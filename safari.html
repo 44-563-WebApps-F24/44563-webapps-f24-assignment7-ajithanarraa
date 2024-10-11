@@ -25,6 +25,25 @@
         #help {
             color: #2ecc71;
         }
+        /* Style the game grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(6, 100px);
+            grid-template-rows: repeat(6, 100px);
+            gap: 10px;
+        }
+        .grid div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .grid div img {
+            max-width: 90px;
+            max-height: 90px;
+        }
     </style>
 </head>
 <body>
@@ -38,6 +57,52 @@
 
     <div>Click for help.</div>
     <div id="help">Help report</div>
+
+    <!-- Game field -->
+    <div class="grid">
+        <!-- Create 6 rows, each with 6 divs -->
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img src="tree.jpg" alt="Tree"></div>
+    </div>
 
 </body>
 </html>
