@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajitha Narra builds list with divs</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .divlist {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ajitha Narra builds list with divs</h1>
+
+    <input type="text" id="itemInput" placeholder="Enter item" />
+    <button id="addEndBtn">Add end</button>
+
+    <div class="flex-container" id="flexContainer">
+        <!-- Initial div elements inside the flex container -->
+        <div class="divlist">Initial Item 1</div>
+        <div class="divlist">Initial Item 2</div>
+    </div>
+
+    <script>
+        // Function to add a new div to the end of the list
+        document.getElementById('addEndBtn').onclick = function () {
+            // Get the value from the input field
+            const inputValue = document.getElementById('itemInput').value;
+
+            // Only add the div if input is not empty
+            if (inputValue.trim() !== "") {
+                // Create a new div element
+                const newDiv = document.createElement('div');
+
+                // Set the innerHTML and class of the new div
+                newDiv.innerHTML = inputValue;
+                newDiv.className = 'divlist';
+
+                // Append the new div to the end of the flex container
+                document.getElementById('flexContainer').appendChild(newDiv);
+
+                // Clear the input field
+                document.getElementById('itemInput').value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
