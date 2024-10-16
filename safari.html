@@ -55,54 +55,119 @@
     <div id="locations">Number of locations checked is zero.</div>
     <div id="score">Score is zero.</div>
 
-    <div>Click for help.</div>
-    <div id="help">Help report</div>
+    <div id="help" style="cursor: pointer;">Click for help.</div>
+    <div>Help report: <span id="help-report">None</span></div>
 
     <!-- Game field -->
     <div class="grid">
-        <!-- Create 6 rows, each with 6 divs -->
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
+        <!-- Generate the 6x6 grid with unique ids and onclick handlers -->
+        <div><img id="img0" src="tree.jpg" onclick="check(0)" alt="Tree"></div>
+        <div><img id="img1" src="tree.jpg" onclick="check(1)" alt="Tree"></div>
+        <div><img id="img2" src="tree.jpg" onclick="check(2)" alt="Tree"></div>
+        <div><img id="img3" src="tree.jpg" onclick="check(3)" alt="Tree"></div>
+        <div><img id="img4" src="tree.jpg" onclick="check(4)" alt="Tree"></div>
+        <div><img id="img5" src="tree.jpg" onclick="check(5)" alt="Tree"></div>
 
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img id="img6" src="tree.jpg" onclick="check(6)" alt="Tree"></div>
+        <div><img id="img7" src="tree.jpg" onclick="check(7)" alt="Tree"></div>
+        <div><img id="img8" src="tree.jpg" onclick="check(8)" alt="Tree"></div>
+        <div><img id="img9" src="tree.jpg" onclick="check(9)" alt="Tree"></div>
+        <div><img id="img10" src="tree.jpg" onclick="check(10)" alt="Tree"></div>
+        <div><img id="img11" src="tree.jpg" onclick="check(11)" alt="Tree"></div>
 
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img id="img12" src="tree.jpg" onclick="check(12)" alt="Tree"></div>
+        <div><img id="img13" src="tree.jpg" onclick="check(13)" alt="Tree"></div>
+        <div><img id="img14" src="tree.jpg" onclick="check(14)" alt="Tree"></div>
+        <div><img id="img15" src="tree.jpg" onclick="check(15)" alt="Tree"></div>
+        <div><img id="img16" src="tree.jpg" onclick="check(16)" alt="Tree"></div>
+        <div><img id="img17" src="tree.jpg" onclick="check(17)" alt="Tree"></div>
 
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img id="img18" src="tree.jpg" onclick="check(18)" alt="Tree"></div>
+        <div><img id="img19" src="tree.jpg" onclick="check(19)" alt="Tree"></div>
+        <div><img id="img20" src="tree.jpg" onclick="check(20)" alt="Tree"></div>
+        <div><img id="img21" src="tree.jpg" onclick="check(21)" alt="Tree"></div>
+        <div><img id="img22" src="tree.jpg" onclick="check(22)" alt="Tree"></div>
+        <div><img id="img23" src="tree.jpg" onclick="check(23)" alt="Tree"></div>
 
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img id="img24" src="tree.jpg" onclick="check(24)" alt="Tree"></div>
+        <div><img id="img25" src="tree.jpg" onclick="check(25)" alt="Tree"></div>
+        <div><img id="img26" src="tree.jpg" onclick="check(26)" alt="Tree"></div>
+        <div><img id="img27" src="tree.jpg" onclick="check(27)" alt="Tree"></div>
+        <div><img id="img28" src="tree.jpg" onclick="check(28)" alt="Tree"></div>
+        <div><img id="img29" src="tree.jpg" onclick="check(29)" alt="Tree"></div>
 
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
-        <div><img src="tree.jpg" alt="Tree"></div>
+        <div><img id="img30" src="tree.jpg" onclick="check(30)" alt="Tree"></div>
+        <div><img id="img31" src="tree.jpg" onclick="check(31)" alt="Tree"></div>
+        <div><img id="img32" src="tree.jpg" onclick="check(32)" alt="Tree"></div>
+        <div><img id="img33" src="tree.jpg" onclick="check(33)" alt="Tree"></div>
+        <div><img id="img34" src="tree.jpg" onclick="check(34)" alt="Tree"></div>
+        <div><img id="img35" src="tree.jpg" onclick="check(35)" alt="Tree"></div>
     </div>
 
+    <script>
+        // Declare variables
+        const ids = Array.from({ length: 36 }, (_, i) => `img${i}`);
+        let score = 0;
+        let locationsVisited = 0;
+        let lastLocation = 0;
+        const zebraLocations = [1, 8, 12, 22, 34];
+        const lionLocation = 14;
+        let gameOver = false;
+
+        // Check function
+        function check(position) {
+            if (gameOver) return;
+
+            const imgId = ids[position];
+            const imgElement = document.getElementById(imgId);
+
+            // Change image based on position
+            if (position === lionLocation) {
+                imgElement.src = 'lion.jpg';  // Change image to lion
+                score -= 2;  // Lion reduces score
+                gameOver = true;
+            } else if (zebraLocations.includes(position)) {
+                imgElement.src = 'zebra.jpg';  // Change image to zebra
+                score += 4;  // Zebra increases score by 4
+            } else {
+                imgElement.src = 'elephant.jpg';  // Change image to elephant
+                score += 1;  // Elephant increases score by 1
+            }
+
+            locationsVisited++;
+            lastLocation = position;
+
+            // Update text
+            document.getElementById("locations").innerText = `Number of locations checked is ${locationsVisited}.`;
+            document.getElementById("score").innerText = `Score is ${score}.`;
+        }
+
+        // Help function
+        function help() {
+            let message = "Its grey";  // Default message
+
+            // Check for closest zebra locations
+            const closestLocations = [lastLocation - 1, lastLocation + 1, lastLocation - 6, lastLocation + 6].map(x => (x + 36) % 36);  // Wrap around logic
+
+            if (closestLocations.some(loc => zebraLocations.includes(loc))) {
+                message = "I see stripes";
+            } else {
+                // Compute row and column differences between lastLocation and lionLocation
+                const lastRow = Math.floor(lastLocation / 6);
+                const lastCol = lastLocation % 6;
+                const lionRow = Math.floor(lionLocation / 6);
+                const lionCol = lionLocation % 6;
+
+                if (Math.abs(lastRow - lionRow) <= 1 && Math.abs(lastCol - lionCol) <= 1) {
+                    message = "Rawr";
+                }
+            }
+
+            document.getElementById("help-report").innerText = message;  // Update help report
+        }
+
+        // Set the onClick for the "Click for help" element
+        document.getElementById('help').onclick = help;
+    </script>
 </body>
 </html>
