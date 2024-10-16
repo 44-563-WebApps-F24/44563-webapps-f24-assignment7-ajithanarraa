@@ -5,4 +5,4 @@ Assignment 7 on DOM
 
 [Hosted at](https://44-563-webapps-f24.github.io/44563-webapps-f24-assignment7-ajithanarraa/divlist.html)
 
-[Hosted at](https://44-563-webapps-f24.github.io/44563-webapps-f24-assignment7-ajithanarraa/safari.html)
+[Hosted at](https://44-563-webapps-f24.github.io/44563-webapps-f24-assignment7-ajithanarraa/precision.html)
