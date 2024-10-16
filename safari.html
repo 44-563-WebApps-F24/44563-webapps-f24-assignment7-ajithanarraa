@@ -103,7 +103,6 @@
         <div><img id="img34" src="tree.jpg" onclick="check(34)" alt="Tree"></div>
         <div><img id="img35" src="tree.jpg" onclick="check(35)" alt="Tree"></div>
     </div>
-
     <script>
         // Declare variables
         const ids = Array.from({ length: 36 }, (_, i) => `img${i}`);
@@ -111,45 +110,91 @@
         let locationsVisited = 0;
         let lastLocation = 0;
         const zebraLocations = [1, 8, 12, 22, 34];
-        const lionLocation = 14;
+        let lionLocation = Math.floor(Math.random() * 36);  // Random initial location for the lion
         let gameOver = false;
-
+    
+        let countdown;  // Variable for countdown interval
+        let timerValue; // Variable for the countdown value
+    
+        // Randomly place zebras
+        const randomZebraLocations = [];
+        while (randomZebraLocations.length < 5) {
+            let randPos = Math.floor(Math.random() * 36);
+            if (!randomZebraLocations.includes(randPos) && randPos !== lionLocation) {
+                randomZebraLocations.push(randPos);
+            }
+        }
+    
+        // Function to start the countdown
+        function startCountdown() {
+            timerValue = Math.floor(Math.random() * 9) + 2; // Random value between 2 and 10
+            document.getElementById("score").innerText = `Score is ${score}. Countdown: ${timerValue}`;
+    
+            countdown = setInterval(() => {
+                timerValue--;
+                document.getElementById("score").innerText = `Score is ${score}. Countdown: ${timerValue}`;
+                
+                if (timerValue <= 0) {
+                    clearInterval(countdown);
+                    alert("Time's up! The game is over.");
+                    gameOver = true; // End the game if the countdown reaches 0
+                }
+            }, 1000); // Update every second
+        }
+    
+        // Call the countdown function when the game starts
+        startCountdown();
+    
         // Check function
         function check(position) {
             if (gameOver) return;
-
+    
             const imgId = ids[position];
             const imgElement = document.getElementById(imgId);
-
+    
+            // Move lion randomly to adjacent cell
+            const moveLion = () => {
+                const directions = [-1, 1, -6, 6]; // left, right, up, down
+                const validMoves = directions.filter(dir => {
+                    const newPos = lionLocation + dir;
+                    return newPos >= 0 && newPos < 36 && !(dir === -1 && lionLocation % 6 === 0) && !(dir === 1 && lionLocation % 6 === 5);
+                });
+                const randomMove = validMoves[Math.floor(Math.random() * validMoves.length)];
+                lionLocation += randomMove;
+            };
+    
+            moveLion();
+    
             // Change image based on position
             if (position === lionLocation) {
                 imgElement.src = 'lion.jpg';  // Change image to lion
                 score -= 2;  // Lion reduces score
                 gameOver = true;
-            } else if (zebraLocations.includes(position)) {
+            } else if (randomZebraLocations.includes(position)) {
                 imgElement.src = 'zebra.jpg';  // Change image to zebra
                 score += 4;  // Zebra increases score by 4
+                randomZebraLocations.splice(randomZebraLocations.indexOf(position), 1);  // Remove zebra from locations
             } else {
                 imgElement.src = 'elephant.jpg';  // Change image to elephant
                 score += 1;  // Elephant increases score by 1
             }
-
+    
             locationsVisited++;
             lastLocation = position;
-
+    
             // Update text
             document.getElementById("locations").innerText = `Number of locations checked is ${locationsVisited}.`;
-            document.getElementById("score").innerText = `Score is ${score}.`;
+            document.getElementById("score").innerText = `Score is ${score}. Countdown: ${timerValue}`;
         }
-
+    
         // Help function
         function help() {
             let message = "Its grey";  // Default message
-
+    
             // Check for closest zebra locations
             const closestLocations = [lastLocation - 1, lastLocation + 1, lastLocation - 6, lastLocation + 6].map(x => (x + 36) % 36);  // Wrap around logic
-
-            if (closestLocations.some(loc => zebraLocations.includes(loc))) {
+    
+            if (closestLocations.some(loc => randomZebraLocations.includes(loc))) {
                 message = "I see stripes";
             } else {
                 // Compute row and column differences between lastLocation and lionLocation
@@ -157,17 +202,33 @@
                 const lastCol = lastLocation % 6;
                 const lionRow = Math.floor(lionLocation / 6);
                 const lionCol = lionLocation % 6;
-
+    
                 if (Math.abs(lastRow - lionRow) <= 1 && Math.abs(lastCol - lionCol) <= 1) {
                     message = "Rawr";
                 }
             }
-
+    
             document.getElementById("help-report").innerText = message;  // Update help report
         }
-
+    
+        // Swap function
+        function swap() {
+            const randIndex1 = Math.floor(Math.random() * 36);
+            let randIndex2;
+            do {
+                randIndex2 = Math.floor(Math.random() * 36);
+            } while (randIndex1 === randIndex2);  // Ensure not to pick the same element
+    
+            const img1 = document.getElementById(ids[randIndex1]);
+            const img2 = document.getElementById(ids[randIndex2]);
+            const tempSrc = img1.src;
+            img1.src = img2.src;
+            img2.src = tempSrc;
+        }
+    
         // Set the onClick for the "Click for help" element
         document.getElementById('help').onclick = help;
     </script>
+    
 </body>
 </html>

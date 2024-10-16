@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajitha Narra builds list with divs</title>
     <style>
         .flex-container {
@@ -26,6 +23,7 @@
     <button onclick="addEnd()">Add End</button>
     <button onclick="addFront()">Add Front</button>
     <button onclick="remove()">Remove</button>
+    <button onclick="swap()">Swap</button> <!-- Swap button -->
 
     <div class="flex-container" id="flexContainer">
         <div class="divlist">Initial Item 1</div>
@@ -63,6 +61,26 @@
                 const middleIndex = Math.floor(length / 2);
                 divListItems[middleIndex].remove();
             }
+        }
+
+        function swap() {
+            const divListItems = document.getElementsByClassName('divlist');
+            const length = divListItems.length;
+            if (length < 2) return;  // Ensure there are at least two items to swap
+
+            const randIndex1 = Math.floor(Math.random() * length);
+            let randIndex2;
+            do {
+                randIndex2 = Math.floor(Math.random() * length);
+            } while (randIndex1 === randIndex2);  // Ensure different indices
+
+            const div1 = divListItems[randIndex1];
+            const div2 = divListItems[randIndex2];
+
+            // Swap the inner HTML of the two selected divs
+            const tempContent = div1.innerHTML;
+            div1.innerHTML = div2.innerHTML;
+            div2.innerHTML = tempContent;
         }
     </script>
 
