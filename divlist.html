@@ -7,14 +7,14 @@
     <style>
         .flex-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 10px;
             margin-top: 20px;
         }
         .divlist {
             padding: 10px;
-            background-color: #f0f0f0;
-            border: 1px solid #ccc;
+            background-color: lightblue;
+            border: 1px solid #000;
         }
     </style>
 </head>
@@ -22,35 +22,46 @@
 
     <h1>Ajitha Narra builds list with divs</h1>
 
-    <input type="text" id="itemInput" placeholder="Enter item" />
-    <button id="addEndBtn">Add end</button>
+    <input type="text" id="inputText" placeholder="Enter text">
+    <button onclick="addEnd()">Add End</button>
+    <button onclick="addFront()">Add Front</button>
+    <button onclick="remove()">Remove</button>
 
     <div class="flex-container" id="flexContainer">
-        <!-- Initial div elements inside the flex container -->
         <div class="divlist">Initial Item 1</div>
         <div class="divlist">Initial Item 2</div>
     </div>
 
     <script>
-        // Function to add a new div to the end of the list
-        document.getElementById('addEndBtn').onclick = function () {
-            // Get the value from the input field
-            const inputValue = document.getElementById('itemInput').value;
+        function addEnd() {
+            const inputValue = document.getElementById('inputText').value;
+            if (inputValue === "") return;  // Don't add if input is empty
 
-            // Only add the div if input is not empty
-            if (inputValue.trim() !== "") {
-                // Create a new div element
-                const newDiv = document.createElement('div');
+            const newDiv = document.createElement('div');
+            newDiv.className = 'divlist';
+            newDiv.innerHTML = inputValue;
 
-                // Set the innerHTML and class of the new div
-                newDiv.innerHTML = inputValue;
-                newDiv.className = 'divlist';
+            document.getElementById('flexContainer').appendChild(newDiv);
+        }
 
-                // Append the new div to the end of the flex container
-                document.getElementById('flexContainer').appendChild(newDiv);
+        function addFront() {
+            const inputValue = document.getElementById('inputText').value;
+            if (inputValue === "") return;  // Don't add if input is empty
 
-                // Clear the input field
-                document.getElementById('itemInput').value = "";
+            const newDiv = document.createElement('div');
+            newDiv.className = 'divlist';
+            newDiv.innerHTML = inputValue;
+
+            const container = document.getElementById('flexContainer');
+            container.insertBefore(newDiv, container.firstChild);
+        }
+
+        function remove() {
+            const divListItems = document.getElementsByClassName('divlist');
+            const length = divListItems.length;
+            if (length > 0) {
+                const middleIndex = Math.floor(length / 2);
+                divListItems[middleIndex].remove();
             }
         }
     </script>
